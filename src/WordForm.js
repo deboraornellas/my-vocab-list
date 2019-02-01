@@ -45,12 +45,20 @@ export class WordForm extends React.Component {
                     <br />
                     <label>
                         Main category:
-                        <input name="category" type="text" value={this.state.category} onChange={this.handleChange} />
+                        <select name="category" value={this.state.category} onChange={this.handleChange}>
+                            <option value="animals">Animals</option>
+                            <option value="feelings">Feelings</option>
+                            <option value="colors">Colors</option>
+                            <option value="people">People</option>
+                            <option value="objects">Objects</option>
+                            <option value="other">Other</option>
+                    </select>
+                        {/* <input name="category" type="text" value={this.state.category} onChange={this.handleChange} /> */}
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
                 <br />
-                <Link to="/listwords" >Show all words</Link>
+                <Link to="/allwords" >Show all words</Link>
                 <br />
                 <Link to="/" >Home</Link>
             </div>

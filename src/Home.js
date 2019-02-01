@@ -12,7 +12,7 @@ export class Home extends React.Component {
             <h1>Home of "my-vocab-list"</h1>
             <p>Here you can add all vocabulary you have already learned from a new language.</p>
             <h2>Options:</h2>
-            <Link to="/listwords" >Show all words</Link>
+            <Link to="/allwords" >Show all words</Link>
             <br />
             <Link to="/insertword" >Add a new word</Link>
          </div>

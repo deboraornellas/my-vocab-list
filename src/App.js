@@ -51,7 +51,7 @@ export class App extends React.Component {
                 <WordForm words = {list} onFormSubmit={this.handleFormSubmit} />
               </div>
             )}/>
-            <Route exact={true} path='/listwords' render={() => (
+            <Route exact={true} path='/allwords' render={() => (
               <div>
                 <ListWords words={list} />
               </div>
