@@ -1,10 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
 
+
 export class WordForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {word: '', translation: '', category: ''};
+        this.state = {word: '', translation: '', category: this.props.categories[0]};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,7 +15,6 @@ export class WordForm extends React.Component {
         const target = event.target;
         const value = target.value;
         const name = target.name;
-        console.log(name)
 
         this.setState({
         [name]: value
@@ -46,14 +46,11 @@ export class WordForm extends React.Component {
                     <label>
                         Main category:
                         <select name="category" value={this.state.category} onChange={this.handleChange}>
-                            <option value="animals">Animals</option>
-                            <option value="feelings">Feelings</option>
-                            <option value="colors">Colors</option>
-                            <option value="people">People</option>
-                            <option value="objects">Objects</option>
-                            <option value="other">Other</option>
-                    </select>
-                        {/* <input name="category" type="text" value={this.state.category} onChange={this.handleChange} /> */}
+                            {this.props.categories.map(
+                                (category) => 
+                                <option value={ category }>{ category }</option>
+                            )}
+                        </select>
                     </label>
                     <input type="submit" value="Submit" />
                 </form>
