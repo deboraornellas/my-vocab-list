@@ -1,11 +1,18 @@
 import React from 'react';
 import { Word } from './Word'
+import { DeleteWord } from './DeleteWord'
 import { Link } from 'react-router-dom'
 
 export class ListWords extends React.Component {
     constructor(props) {
         super(props);
         this.state = {words: this.props.words};
+        this.onDeleteWord = this.onDeleteWord.bind(this);
+    }
+
+    onDeleteWord() {
+        alert('The word ' + this.state.word + ' is going to be deleted from the list.');
+        this.props.onDeleteWord(this.state);
     }
       
     whatTorender(props){
@@ -29,13 +36,14 @@ export class ListWords extends React.Component {
                 <div>
                     <h1> All words in my vocab list: </h1>
                         {props.map(
-                            (word, i) => 
+                            (word, i, j) => 
                                 {if(word.category === this.props.category || this.props.category === undefined) {
-                                    return <Word
-                                    key={i}
-                                    word={word.word} 
-                                    translation={word.translation} 
-                                    category={word.category}/>
+                                    return ([<Word
+                                                key={i}
+                                                word={word.word} 
+                                                translation={word.translation} 
+                                                category={word.category}/>,
+                                    <DeleteWord key={j} word={word} onDeleteWord={this.props.onDeleteWord}/>])
                                 }}
                         )}
                 </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { CategoryForm } from './CategoryForm';
 
 
 export class WordForm extends React.Component {
@@ -47,8 +48,8 @@ export class WordForm extends React.Component {
                         Main category:
                         <select name="category" value={this.state.category} onChange={this.handleChange}>
                             {this.props.categories.map(
-                                (category) => 
-                                <option value={ category }>{ category }</option>
+                                (category, i) => 
+                                <option key={i} value={ category }>{ category }</option>
                             )}
                         </select>
                     </label>
@@ -58,6 +59,8 @@ export class WordForm extends React.Component {
                 <Link to="/allwords" >Show all words</Link>
                 <br />
                 <Link to="/" >Home</Link>
+                <br />
+                <CategoryForm categories={this.props.categories}/>
             </div>
         );
     }
