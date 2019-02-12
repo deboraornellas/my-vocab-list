@@ -2,11 +2,10 @@ import React from 'react';
 import { Home } from './Home'
 import { SignUp } from './SignUp'
 import { WordForm } from './WordForm'
-import { ListWords} from './ListWords'
-import {
-    BrowserRouter,
-    Route,
-  } from 'react-router-dom'
+import { WordList } from './WordList'
+import Template from './Template'
+import {BrowserRouter, Route} from 'react-router-dom'
+
 
 let wordList = [
     {"word": "amour", "translation": "love", "category": "Feelings"},
@@ -80,6 +79,11 @@ export class App extends React.Component {
       return (
         <BrowserRouter>
           <div>
+            <Route path='/' render={() => (
+              <div>
+                <Template categories={categoryList}/>
+              </div>
+            )}/>
             <Route exact={true} path='/' render={() => (
               <div>
                 <Home categories={categoryList} />
@@ -96,14 +100,14 @@ export class App extends React.Component {
             )}/>
             <Route exact={true} path='/allwords' render={() => (
               <div>
-                <ListWords words={list} onDeleteWord={this.onDeleteWord} />
+                <WordList words={list} onDeleteWord={this.onDeleteWord} />
               </div>
             )}/>
             {this.state.categories.map(
                 (category, i) => 
                 <Route key={i} exact={true} path={'/'+category} render={() => (
                     <div>
-                      <ListWords words={list} category={category} />
+                      <WordList words={list} category={category} />
                     </div>
                   )}/>
             )}

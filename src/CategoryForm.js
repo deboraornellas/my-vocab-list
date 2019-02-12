@@ -1,5 +1,11 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem'
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select'
+
 
 
 export class CategoryForm extends React.Component {
@@ -32,18 +38,29 @@ export class CategoryForm extends React.Component {
         }                              
         return (
             <div>
-            <p>Show words from a specific category:</p>
+            <h3>Show words from a specific category:</h3>
             <form onSubmit={this.handleSubmit}>
-                    <label>
-                        Main category:
-                        <select name="category" value={this.state.category} onChange={this.handleChange}>
-                            {this.props.categories.map(
+                <FormControl>
+                    <InputLabel htmlFor="select-multiple">Category</InputLabel>
+                    <Select
+                        name="category"
+                        label="Category"
+                        value={this.state.category}
+                        onChange={this.handleChange}
+                    >
+                        {this.props.categories.map(
                                 (category, i) => 
-                                <option key={i} value={ category }>{ category }</option>
-                            )}
-                        </select>
-                    </label>
-                    <input type="submit" value="Submit" />
+                                <MenuItem 
+                                    key={i} 
+                                    value={ category }
+                                >
+                                    { category }
+                                </MenuItem>
+                        )}
+                    </Select>
+                </FormControl>
+                <br/> <br/>
+                <Button variant="contained" type="submit">Submit</Button>
                 </form>
             </div>
        )

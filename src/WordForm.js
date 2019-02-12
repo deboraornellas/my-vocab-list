@@ -1,6 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
 import { CategoryForm } from './CategoryForm';
+import TextField from '@material-ui/core/TextField'
+import FormControl from '@material-ui/core/FormControl';
+import MenuItem from '@material-ui/core/MenuItem'
+import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
+import Select from '@material-ui/core/Select'
+import { Container } from './styled/Template'
 
 
 export class WordForm extends React.Component {
@@ -19,49 +25,73 @@ export class WordForm extends React.Component {
 
         this.setState({
         [name]: value
-        })
+        }, ()=>{})
       }
 
 
     handleSubmit(event) {
-        alert('New word and translation were submitted: ' + this.state.word + '/' + this.state.translation);
+        alert('New word and translation were submitted: ' + this.state.word + '/' + this.state.translation + '/' + this.state.category);
         event.preventDefault();
         this.props.onFormSubmit(this.state);
     }
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.handleSubmit}>
+            <Container>
+                <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
                     <h3> Add new words: </h3>
-                    <label>
-                        New french word:
-                        <input name="word" type="text" value={this.state.word} onChange={this.handleChange} />
-                    </label>
+                    <TextField
+                        name="word"
+                        label="New french word"
+                        value={this.state.word}
+                        onChange={this.handleChange}
+                        display={this.state['word']}
+                        type="text"
+                        //className={classes.textField}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        margin="normal"
+                    />
                     <br />
-                    <label>
-                        Translation:
-                        <input name="translation" type="text" value={this.state.translation} onChange={this.handleChange} />
-                    </label>
+                    <TextField
+                        name="translation"
+                        label="Translation"
+                        value={this.state.translation}
+                        onChange={this.handleChange}
+                        type="text"
+                        //className={classes.textField}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        margin="normal"
+                    />
                     <br />
-                    <label>
-                        Main category:
-                        <select name="category" value={this.state.category} onChange={this.handleChange}>
+                    <FormControl>
+                        <InputLabel htmlFor="select-multiple">Category</InputLabel>
+                        <Select
+                            name="category"
+                            label="Category"
+                            value={this.state.category}
+                            onChange={this.handleChange}
+                        >
                             {this.props.categories.map(
-                                (category, i) => 
-                                <option key={i} value={ category }>{ category }</option>
+                                    (category, i) => 
+                                    <MenuItem 
+                                        key={i} 
+                                        value={ category }
+                                    >
+                                        { category }
+                                    </MenuItem>
                             )}
-                        </select>
-                    </label>
-                    <input type="submit" value="Submit" />
+                        </Select>
+                    </FormControl>
+                    <br/> <br/>
+                    <Button variant="contained" type="submit">Submit</Button>
                 </form>
                 <br />
-                <Link to="/allwords" >Show all words</Link>
-                <br />
-                <Link to="/" >Home</Link>
-                <br />
                 <CategoryForm categories={this.props.categories}/>
-            </div>
+            </Container>
         );
     }
 }
