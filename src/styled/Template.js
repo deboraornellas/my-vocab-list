@@ -18,10 +18,11 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	text-align: center;
+	width: fit-content;
+	min-width: 30%;
 	margin: 10px auto;
 	padding: 20px;
-	border: 2px black solid;
-	width: 60%;
+	border: 5px black solid;
 	min-height: 80%;
 	background-color: white;
 	font-family: 'Roboto', sans-serif;
