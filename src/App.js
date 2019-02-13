@@ -8,8 +8,6 @@ import {BrowserRouter, Route} from 'react-router-dom'
 
 
 let wordList = [
-    {"word": "amour", "translation": "love", "category": "Feelings"},
-    {"word": "chat", "translation": "cat", "category": "Animals"}
 ]
 
 let categoryList = ["Animals", "Feelings", "Colors", "People", "Objects", "Verbs", "Clothing", "Nature", "Other"]

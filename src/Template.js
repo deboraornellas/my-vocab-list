@@ -3,6 +3,7 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import { createMuiTheme } from '@material-ui/core/styles';
 import NavDrawer from './NavDrawer'
 import {Header} from './styled/Template'
+import {Link} from 'react-router-dom'
 
 const theme = createMuiTheme({
   typography: {
@@ -22,7 +23,7 @@ class Template extends Component {
       >
         <NavDrawer categories={this.props.categories}/>
         <Header>
-          My Vocabulary List
+          <Link to='/' style={{ color: 'white', textDecoration: 'none' }}>My Vocabulary List</Link>
         </Header>
       </MuiThemeProvider>
     )

@@ -4,6 +4,10 @@ import MenuItem from '@material-ui/core/MenuItem'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import HomeIcon from '@material-ui/icons/Home';
+import ListIcon from '@material-ui/icons/List';
+import AddIcon from '@material-ui/icons/Add';
 import Collapse from '@material-ui/core/Collapse';
 import {Link} from 'react-router-dom'
 import {NavToggleButton} from './styled/NavDrawer'
@@ -37,7 +41,6 @@ class NavDrawer extends Component {
             <div>
             <NavToggleButton
                 toggle={this.toggle}
-                disablePadding={true}
                 open={this.state.open}
             />
             <Drawer
@@ -48,6 +51,7 @@ class NavDrawer extends Component {
                     <NavToggleButton
                     toggle={this.toggle}
                     open={this.state.open}
+                    disablePadding={true}
                     />
                 </MenuItem>
                 <Link
@@ -56,7 +60,10 @@ class NavDrawer extends Component {
                 >
                 <MenuItem
                     onClick={this.toggle}>
-                    <ListItemText primary="Home" />
+                    <ListItemIcon>
+                        <HomeIcon />
+                    </ListItemIcon>
+                    <ListItemText inset primary="Home" />
                 </MenuItem>
                 </Link>
                 <Link
@@ -65,7 +72,10 @@ class NavDrawer extends Component {
                 >
                 <MenuItem
                     onClick={this.toggle}>
-                    <ListItemText primary="All words" />
+                    <ListItemIcon>
+                        <ListIcon />
+                    </ListItemIcon>
+                    <ListItemText inset primary="All words" />
                 </MenuItem>
                 </Link>
                 <Link
@@ -74,7 +84,10 @@ class NavDrawer extends Component {
                 >
                 <MenuItem
                     onClick={this.toggle}>
-                    <ListItemText primary="Add a new word" />
+                    <ListItemIcon>
+                        <AddIcon />
+                    </ListItemIcon>
+                    <ListItemText inset primary="Add a new word" />
                 </MenuItem>
                 </Link>
                 <ListItem button onClick={this.toggleNested}>
@@ -91,7 +104,7 @@ class NavDrawer extends Component {
                             >
                                 <MenuItem
                                     onClick={this.toggle}>
-                                    <ListItemText primary={category} />
+                                    <ListItemText inset primary={category} />
                                 </MenuItem>
                             </Link>
                         )}

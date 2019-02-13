@@ -1,11 +1,12 @@
 import React from 'react'
+import { TitleStyle } from './styled/Template'
 
 export const Word = ({word="No Word", translation= "Not available", category = "None"}) => {
 	return (
 		<section>
-			<h2 >{word}</h2>
-			<p >Translation: {translation}</p>
-			<p>Category: {category}</p>
+			<TitleStyle style={{color: 'SaddleBrown'}}>{word}</TitleStyle>
+			<p ><strong>Translation:</strong> {translation}</p>
+			<p><strong>Category:</strong> {category}</p>
 		</section>
 	)
 }   

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Button from '@material-ui/core/Button';                                         
 
 export class DeleteWord extends React.Component {
     constructor(props) {
@@ -17,7 +17,7 @@ export class DeleteWord extends React.Component {
     render() {
         return (
             <div>
-                <button type="button" onClick={this.handleDelete}>Delete</button>
+                <Button variant="contained" onClick={this.handleDelete}>Delete</Button>
             </div>
         );
     }

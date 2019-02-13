@@ -3,6 +3,9 @@ import { Word } from './Word'
 import { DeleteWord } from './DeleteWord'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
 import { Container, WordStyle, TitleStyle } from './styled/Template'
 
 export class WordList extends React.Component {
@@ -46,12 +49,23 @@ export class WordList extends React.Component {
                         {props.map(
                             (word, i, j) => 
                                 {if(word.category === this.props.category || this.props.category === undefined) {
-                                    return ([<Word
-                                                key={i}
-                                                word={word.word} 
-                                                translation={word.translation} 
-                                                category={word.category}/>,
-                                    <DeleteWord key={j} word={word} onDeleteWord={this.props.onDeleteWord}/>])
+                                    return ([
+                                        <Card style={{background: 'lightgray'}}> 
+                                            <CardContent>
+                                                <Word
+                                                    key={i}
+                                                    word={word.word} 
+                                                    translation={word.translation} 
+                                                    category={word.category}
+                                                />
+                                                <DeleteWord 
+                                                    key={j} 
+                                                    word={word} 
+                                                    onDeleteWord={this.props.onDeleteWord}
+                                                />
+                                            </CardContent>
+                                        </Card>
+                                    ])
                                 }}
                         )}
                 </div>
@@ -67,7 +81,7 @@ export class WordList extends React.Component {
         }
         else {
             return (
-                <TitleStyle> Words in category {cat}: </TitleStyle>
+                <TitleStyle> Words in category "{cat}": </TitleStyle>
             )
         }
     }
