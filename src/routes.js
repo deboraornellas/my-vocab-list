@@ -3,7 +3,7 @@ import Home from './Home'
 import { WordForm } from './WordForm/component'
 import { WordList } from './WordList/container'
 import Template from './Template/container'
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 
 
 export const Routes = (props) => {

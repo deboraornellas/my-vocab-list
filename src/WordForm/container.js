@@ -12,7 +12,7 @@ import { Container } from '../Template/style'
 export const WordFormContainer = (props) => {
     return (
         <Container>
-            <form noValidate autoComplete="off" onSubmit={this.handleSubmit}>
+            <form noValidate autoComplete="off" onSubmit={props.handleSubmit}>
                 <h3> Add new words: </h3>
                 <TextField
                     name="word"

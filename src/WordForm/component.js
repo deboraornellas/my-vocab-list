@@ -32,6 +32,7 @@ export class WordForm extends React.Component {
                 state={this.state}
                 handleChange={this.handleChange}
                 categories={this.props.categories}
+                handleSubmit={this.handleSubmit}
             />
         );
     }
