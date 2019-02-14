@@ -1,5 +1,5 @@
 import React from 'react'
-import { TitleStyle } from './styled/Template'
+import { TitleStyle } from '../Template/style'
 
 export const Word = ({word="No Word", translation= "Not available", category = "None"}) => {
 	return (

@@ -1,37 +1,25 @@
-import React from 'react';
-import { Word } from './Word'
-import { DeleteWord } from './DeleteWord'
+import React, { Fragment } from 'react';
+import { Word } from '../Word'
+import DeleteWord from '../DeleteWord'
 import { Link } from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-import { Container, WordStyle, TitleStyle } from './styled/Template'
+import { Container, WordStyle, TitleStyle } from '../Template/style'
 
-export class WordList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {words: this.props.words};
-        this.onDeleteWord = this.onDeleteWord.bind(this);
-    }
-
-    onDeleteWord() {
-        alert('The word ' + this.state.word + ' is going to be deleted from the list.');
-        this.props.onDeleteWord(this.state);
-    }
-      
-    whatTorender(props){
-        console.log("size "+ props.length)
+export const WordList = (props) => {
+         
+    const whatTorender = (words) => {
         let count = 0;
-        props.map(
+        words.map(
             (word) => 
-                {if(word.category === this.props.category || this.props.category === undefined) {
+                {if(word.category === props.category || props.category === "all") {
                     count++
                 }}
         )
         if(count === 0) {
             return (
-                <div>
+                <Fragment>
                     <TitleStyle>
                         <p>No words added yet to this category!</p>
                         <p>Do you want to add some? </p>
@@ -39,42 +27,40 @@ export class WordList extends React.Component {
                     <Button variant="contained" component={Link} to="/insertword">
                         Add a new word
                     </Button>
-                </div>
+                </Fragment>
             )
         }
         else {
             return (
-                <div>
-                    {this.whatToWrite(this.props.category)}
-                        {props.map(
-                            (word, i, j) => 
-                                {if(word.category === this.props.category || this.props.category === undefined) {
+                <Fragment>
+                    {whatToWrite(props.category)}
+                        {words.map(
+                            (word, i) => 
+                                {if(word.category === props.category || props.category === "all") {
                                     return ([
-                                        <Card style={{background: 'lightgray'}}> 
+                                        <Card key={i} style={{background: 'lightgray'}}> 
                                             <CardContent>
                                                 <Word
-                                                    key={i}
                                                     word={word.word} 
                                                     translation={word.translation} 
                                                     category={word.category}
                                                 />
                                                 <DeleteWord 
-                                                    key={j} 
                                                     word={word} 
-                                                    onDeleteWord={this.props.onDeleteWord}
+                                                    onDeleteWord={props.onDeleteWord}
                                                 />
                                             </CardContent>
                                         </Card>
                                     ])
                                 }}
                         )}
-                </div>
+                </Fragment>
             )
         }
     }
 
-    whatToWrite(cat) {
-        if (cat === undefined) {
+    const whatToWrite = (cat) => {
+        if (cat === "all") {
             return (
                 <TitleStyle> All words in my vocab list: </TitleStyle>
             )
@@ -86,12 +72,9 @@ export class WordList extends React.Component {
         }
     }
 
-    render() {
-
-        return (
-            <Container>
-                {this.whatTorender(this.props.words)} 
-            </Container>
-        )
-    }
+    return (
+        <Container>
+            {whatTorender(props.words)} 
+        </Container>
+    )
 }

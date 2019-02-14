@@ -10,7 +10,7 @@ import ListIcon from '@material-ui/icons/List';
 import AddIcon from '@material-ui/icons/Add';
 import Collapse from '@material-ui/core/Collapse';
 import {Link} from 'react-router-dom'
-import {NavToggleButton} from './styled/NavDrawer'
+import {NavToggleButton} from './style'
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
