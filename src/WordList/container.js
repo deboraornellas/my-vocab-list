@@ -1,80 +1,81 @@
-import React, { Fragment } from 'react';
-import { Word } from '../Word'
-import DeleteWord from '../DeleteWord'
-import { Link } from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import { Container, WordStyle, TitleStyle } from '../Template/style'
+import React, { Fragment } from "react";
+import { Word } from "../Word";
+import DeleteWord from "../DeleteWord";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import { Container, WordStyle, TitleStyle } from "../Template/style";
 
-export const WordList = (props) => {
-         
-    const whatTorender = (words) => {
+export const WordList = props => {
+    const whatTorender = words => {
         let count = 0;
-        words.map(
-            (word) => 
-                {if(word.category === props.category || props.category === "all") {
-                    count++
-                }}
-        )
-        if(count === 0) {
+        words.map(word => {
+            if (word.category === props.category || props.category === "all") {
+                count++;
+            }
+        });
+        if (count === 0) {
             return (
                 <Fragment>
                     <TitleStyle>
                         <p>No words added yet to this category!</p>
                         <p>Do you want to add some? </p>
-                    </TitleStyle>  
-                    <Button variant="contained" component={Link} to="/insertword">
+                    </TitleStyle>
+                    <Button
+                        variant="contained"
+                        component={Link}
+                        to="/insertword"
+                    >
                         Add a new word
                     </Button>
                 </Fragment>
-            )
-        }
-        else {
+            );
+        } else {
             return (
                 <Fragment>
                     {whatToWrite(props.category)}
-                        {words.map(
-                            (word, i) => 
-                                {if(word.category === props.category || props.category === "all") {
-                                    return ([
-                                        <Card key={i} style={{background: 'lightgray'}}> 
-                                            <CardContent>
-                                                <Word
-                                                    word={word.word} 
-                                                    translation={word.translation} 
-                                                    category={word.category}
-                                                />
-                                                <DeleteWord 
-                                                    word={word} 
-                                                    onDeleteWord={props.onDeleteWord}
-                                                />
-                                            </CardContent>
-                                        </Card>
-                                    ])
-                                }}
-                        )}
+                    {words.map((word, i) => {
+                        if (
+                            word.category === props.category ||
+                            props.category === "all"
+                        ) {
+                            return [
+                                <Card
+                                    key = {i}
+                                    style={{ 
+                                        width: '60%', 
+                                        background: "lightgray",
+                                        margin: "10px auto"
+                                     }}
+                                >
+                                    <CardContent>
+                                        <Word
+                                            word={word.word}
+                                            translation={word.translation}
+                                            category={word.category}
+                                        />
+                                        <DeleteWord
+                                            word={word}
+                                            onDeleteWord={props.onDeleteWord}
+                                        />
+                                    </CardContent>
+                                </Card>
+                            ];
+                        }
+                    })}
                 </Fragment>
-            )
+            );
         }
-    }
+    };
 
-    const whatToWrite = (cat) => {
+    const whatToWrite = cat => {
         if (cat === "all") {
-            return (
-                <TitleStyle> All words in my vocab list: </TitleStyle>
-            )
+            return <TitleStyle> All words in my vocab list: </TitleStyle>;
+        } else {
+            return <TitleStyle> Words in category "{cat}": </TitleStyle>;
         }
-        else {
-            return (
-                <TitleStyle> Words in category "{cat}": </TitleStyle>
-            )
-        }
-    }
+    };
 
-    return (
-        <Container>
-            {whatTorender(props.words)} 
-        </Container>
-    )
-}
+    return <Container>{whatTorender(props.words)}</Container>;
+};

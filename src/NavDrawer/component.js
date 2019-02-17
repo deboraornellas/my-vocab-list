@@ -3,6 +3,7 @@ import Drawer from '@material-ui/core/Drawer'
 import MenuItem from '@material-ui/core/MenuItem'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import GameIcon from '@material-ui/icons/Games'
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import HomeIcon from '@material-ui/icons/Home';
@@ -76,6 +77,18 @@ class NavDrawer extends Component {
                         <ListIcon />
                     </ListItemIcon>
                     <ListItemText inset primary="All words" />
+                </MenuItem>
+                </Link>
+                <Link
+                to={'/trivia'}
+                style={{ textDecoration: 'none' }}
+                >
+                <MenuItem
+                    onClick={this.toggle}>
+                    <ListItemIcon>
+                        <GameIcon />
+                    </ListItemIcon>
+                    <ListItemText inset primary="Trivia" />
                 </MenuItem>
                 </Link>
                 <Link

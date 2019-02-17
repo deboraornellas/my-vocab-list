@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import Home from './Home'
 import { WordForm } from './WordForm/component'
 import { WordList } from './WordList/container'
+import { Trivia } from './Trivia/trivia.container'
 import Template from './Template/container'
 import { BrowserRouter, Route } from 'react-router-dom'
 
@@ -35,6 +36,10 @@ export const Routes = (props) => {
                         <WordList words={props.list} category={category} onDeleteWord={props.onDeleteWord} />
                     )}
                 />)}  
+                <Route exact={true} path='/trivia' render={() => (
+                    <Trivia words={props.list} categories={props.categories} />
+                    )}
+                />
             </Fragment>
         </BrowserRouter>
     )
