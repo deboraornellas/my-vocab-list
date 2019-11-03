@@ -155,10 +155,10 @@ export class Trivia extends React.Component {
             if (nonEmptyCategories.length === 0) {
                 return (
                     <div>
-                        <h2>
-                            There isn't any words in your vocab list yet! Add
+                        <TitleStyle>
+                            There aren't any words in your vocab list yet! Add
                             some to play the trivia :)
-                        </h2>
+                        </TitleStyle>
                     </div>
                 );
             } else {
